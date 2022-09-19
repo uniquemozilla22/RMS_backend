@@ -1,0 +1,35 @@
+{
+  "name": "rms_backend",
+  "version": "1.0.0",
+  "description": "This is the backend of the application of Restaurant Management System. The application is build by Yogesh Bhattarai.",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uniquemozilla22/RMS_backend.git"
+  },
+  "keywords": [
+    "RMS",
+    "Restaurant",
+    "Management",
+    "System",
+    "Node",
+    "Typescript",
+    "Express",
+    "Javascript",
+    "Yogesh",
+    "Bhattarai"
+  ],
+  "author": "Yogesh Bhattari",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/uniquemozilla22/RMS_backend/issues"
+  },
+  "homepage": "https://github.com/uniquemozilla22/RMS_backend#readme",
+  "devDependencies": {
+    "@types/node": "^18.7.18",
+    "typescript": "^4.8.3"
+  }
+}

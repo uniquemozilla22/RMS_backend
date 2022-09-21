@@ -6,7 +6,9 @@ const encryptPassword= async (req:Request,res:Response, next:NextFunction) =>{
     let {password} = req.body
     if(!password){
         res.status(500).send(ServerHandleError("There is no Password"))
+        return;
     }
+    
     const salt_rounds:number = parseInt(process.env.SALT_ROUNDS || '10') 
     const salt:string  = await bcrypt.genSalt(salt_rounds);
     password = await bcrypt.hash(password, salt);
@@ -17,7 +19,7 @@ const encryptPassword= async (req:Request,res:Response, next:NextFunction) =>{
    next();
 }
 
-const decryptPassword = (req:Request,res:Response, next:NextFunction) =>{
+const decryptPassword = () =>{
     
 }
 

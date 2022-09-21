@@ -4,12 +4,12 @@ import * as env from "dotenv"
 import cors from "cors"
 import bodyParser from "body-parser"
 import connection from "./src/database/connection"
+import routes from "./src/routes"
 
 
 
 // Declatrations of the function
 const app = express();
-const router = express.Router();
 
 
 // Using the application extenders 
@@ -20,6 +20,10 @@ app.use(bodyParser.json());
 
 // Connection to the database
 connection()
+
+
+// Routes Handler
+routes(app)
 
 const port = process.env.NODE_ENV !== "production" ?  8000:process.env.PORT ;
 

@@ -8,7 +8,7 @@ const LoginGlobalRoute = (req:Request ,res:Response)=>{
 
     console.log(req.body)
 
-    res.send(username)
+    res.status(500).send(username)
 }
 
 

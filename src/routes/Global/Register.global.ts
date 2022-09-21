@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express"
 import UserSchema, { IUser } from "../../database/Schema/User/User.schema"
-import { ErrorObjectPassedError } from "../../utils/HandleError/Error.utils"
+import { ErrorObjectPassedError, IErrorMessage, UserAlreadyExists } from "../../utils/HandleError/Error.utils"
 import { SuccesMessageWithData } from "../../utils/HandleResponse/HandleResponse.utils"
 import { encryptPassword } from "../../utils/middleware/bycrypt.middleware"
 
@@ -18,6 +18,8 @@ const RegisterRoute = async (req:Request ,res:Response)=>{
         isChef,
         isReceptionist,
         isWaiter}= req.body
+
+
 
     const user = new UserSchema({
         name,
@@ -38,6 +40,22 @@ const RegisterRoute = async (req:Request ,res:Response)=>{
     }
     catch(err){
         res.status(500).send(ErrorObjectPassedError(err))
+    }
+}
+
+
+const checkUser = async (data:IUser): Promise<IErrorMessage | undefined> =>{
+
+    const checkByEmail =  await UserSchema.exists({email:data})
+    const checkByUsername =  await UserSchema.exists({username:data})
+    if(checkByEmail){
+        return UserAlreadyExists( {email:data} )
+    }
+    else if(checkByUsername){
+        return UserAlreadyExists( {username:data} )
+    }
+    else{
+        return
     }
 }
 

@@ -3,13 +3,18 @@
 import {Schema,model} from 'mongoose'
 
 export interface IUser {
-    name: string;
-    email: string;
-    address: string;
-    password: string;
-    username: string;
-    phone?: string;
+    name: StringConstructor;
+    email: StringConstructor;
+    address: StringConstructor;
+    password: StringConstructor;
+    username: StringConstructor;
+    phone?: StringConstructor;
+    isAdmin: BooleanConstructor,
+    isChef:BooleanConstructor,
+    isReceptionist:BooleanConstructor,
+    isWaiter:BooleanConstructor,
 }
+
 
 const User =  new Schema<IUser>({
     name: {
@@ -34,6 +39,22 @@ const User =  new Schema<IUser>({
       },
       username: {
         type: String,
+        required: true,
+      },
+      isAdmin: {
+        type: Boolean,
+        required: true,
+      },
+      isChef: {
+        type: Boolean,
+        required: true,
+      },
+      isReceptionist: {
+        type: Boolean,
+        required: true,
+      },
+      isWaiter: {
+        type: Boolean,
         required: true,
       },
 })

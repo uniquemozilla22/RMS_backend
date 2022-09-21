@@ -19,7 +19,15 @@ const RegisterRoute = async (req:Request ,res:Response)=>{
         isReceptionist,
         isWaiter}= req.body
 
+        const checkByEmail : IErrorMessage | undefined = await checkUser(email)
+        const checkbyUsername:IErrorMessage | undefined = await checkUser(username)
 
+
+        if(checkByEmail || checkbyUsername)
+        {
+            res.status(409).send( checkByEmail||checkbyUsername )
+            return
+        }
 
     const user = new UserSchema({
         name,

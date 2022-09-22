@@ -7,7 +7,7 @@ export interface IUser {
   password: string;
   username: string;
   phone?: string;
-  userType: string;
+  userType: "admin" | "receptionist" | "chef" | "waiter";
 }
 
 const User = new Schema<IUser>({

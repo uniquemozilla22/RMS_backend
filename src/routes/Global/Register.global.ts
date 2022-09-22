@@ -1,3 +1,4 @@
+import { resolveTxt } from "dns";
 import { NextFunction, Request, Response } from "express";
 import UserSchema, { IUser } from "../../database/Schema/User/User.schema";
 import {
@@ -32,10 +33,17 @@ const AdminRegistration = async (req: Request, res: Response) => {
   });
 
   try {
-    const User: IUser = await user.save();
-    res
-      .status(200)
-      .send(SuccesMessageWithData(`${name} id registered`, { ...User }));
+    const {
+      name: userName,
+      password: userPassword,
+      ...rest
+    }: IUser = await user.save();
+    res.status(200).send(
+      SuccesMessageWithData(`${name} id registered`, {
+        ...rest,
+        name: userName,
+      })
+    );
   } catch (err) {
     res.status(500).send(ErrorObjectPassedError(err));
   }

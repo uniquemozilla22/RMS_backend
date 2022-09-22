@@ -9,6 +9,7 @@ import {
 const LoginGlobalRoute = (req: Request, res: Response) => {
   const { username, name, address, phone, userType, email }: IUser =
     req.body.user;
+
   const user: ITokenSigner = {
     name,
     phone,

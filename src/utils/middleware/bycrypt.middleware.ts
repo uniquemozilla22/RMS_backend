@@ -47,6 +47,7 @@ const comparePassword = async (
     res.status(404).send(NoUserFound({ username }));
     return;
   }
+
   const { password: userPassword, ...rest } = User;
   const comparePasswords: boolean = await bcrypt.compare(
     password,
@@ -58,7 +59,7 @@ const comparePassword = async (
   }
   req.body = {
     ...req.body,
-    user: { ...rest },
+    user: User,
   };
   next();
 };

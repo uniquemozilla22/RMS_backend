@@ -25,6 +25,8 @@ export const ServerHandleError = (message:string):IErrorMessage=>{
 }
 
 export const UserAlreadyExists = (data:any):IErrorMessageWithData=>({success:false,status:409, message:"User Already Exists", data})
+export const NoUserFound = (data:any):IErrorMessageWithData=>({success:false,status:404, message:"User not Found", data})
+export const PasswordInCorrect = (data:any):IErrorMessageWithData=>({success:false,status:403, message:"Password is incorrect", data})
 
 
 export const ErrorObjectPassedError = (err: any) => ({success:false, status: 500, message:err.message, data:err})

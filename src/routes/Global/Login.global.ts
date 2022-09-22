@@ -1,15 +1,9 @@
-import { Request, Response } from "express"
+import { Request, Response } from "express";
+import { createToken } from "../../utils/middleware/jwt.middleware";
 
+const LoginGlobalRoute = (req: Request, res: Response) => {
+  const { user } = req.body;
+  const token = createToken(user);
+};
 
-
-const LoginGlobalRoute = (req:Request ,res:Response)=>{
-
-    const {username , password} = req.body
-
-    console.log(req.body)
-
-    res.status(500).send(username)
-}
-
-
-export default  LoginGlobalRoute
+export default LoginGlobalRoute;

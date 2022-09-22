@@ -1,7 +1,16 @@
 import { IUser } from "../../database/Schema/User/User.schema";
 import jwt from "jsonwebtoken";
 
-export const createToken = (user: IUser) => {
+export interface ITokenSigner {
+  name: string;
+  email: string;
+  username: string;
+  address: string;
+  userType: "admin" | "receptionist" | "chef" | "waiter";
+  phone?: string;
+}
+
+export const createToken = (user: ITokenSigner) => {
   const { name, email, username, address, userType, phone } = user;
 
   const tokenizer: string =

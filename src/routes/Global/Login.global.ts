@@ -9,7 +9,6 @@ import {
 const LoginGlobalRoute = (req: Request, res: Response) => {
   const { username, name, address, phone, userType, email }: IUser =
     req.body.user;
-
   const user: ITokenSigner = {
     name,
     phone,
@@ -19,7 +18,6 @@ const LoginGlobalRoute = (req: Request, res: Response) => {
     username,
   };
   const token: string = createToken(user);
-
   res
     .status(200)
     .send(LoginSuccessfull("Login Successfull", { ...user, token }));

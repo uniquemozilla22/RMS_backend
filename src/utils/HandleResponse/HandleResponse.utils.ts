@@ -23,3 +23,10 @@ export const LoginSuccessfull = (
   message,
   data,
 });
+
+export const ValidatedTicket = (data: any) => ({
+  success: true,
+  status: 200,
+  message: "The user is already logged in to the application.",
+  data,
+});

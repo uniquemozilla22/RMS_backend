@@ -1,5 +1,11 @@
 import express from "express";
 import {
+  isAdmin,
+  isChef,
+  isReceptionist,
+  isWaiter,
+} from "../../utils/middleware/authentication.moddleware";
+import {
   comparePassword,
   encryptPassword,
 } from "../../utils/middleware/bycrypt.middleware";
@@ -11,6 +17,6 @@ const GlobalRouter = express.Router();
 
 GlobalRouter.post("/login", comparePassword, LoginGlobalRoute);
 GlobalRouter.post("/register", encryptPassword, RegisterRoute);
-GlobalRouter.get("/validatetoken", validateToken);
+GlobalRouter.get("/validatetoken", isWaiter, validateToken);
 
 export default GlobalRouter;

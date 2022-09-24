@@ -4,7 +4,6 @@ import {
   UserNotLoggedIn,
 } from "../../utils/HandleError/Error.utils";
 import { validateJSONWebToken } from "../../utils/middleware/jwt.middleware";
-import { getEpochTime } from "../../utils/services/GetTime";
 
 const validateToken = (req: Request, res: Response) => {
   const token: string | undefined = req.headers.authorization?.split(" ")[1];
@@ -19,7 +18,6 @@ const validateToken = (req: Request, res: Response) => {
     res.status(401).send(NotValidToken());
     return;
   }
-  //   const validatedBoolean = validated.exp - getEpochTime();
   res.send(validated);
 };
 

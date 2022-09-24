@@ -55,6 +55,33 @@ export const NotValidToken = (): IErrorMessage => ({
   message: "The user's token is not valid. Please Login again",
 });
 
+export const notAdminToken = (): IErrorMessage => ({
+  success: false,
+  status: 401,
+  message:
+    "The user's token is not admin. Please Login with admin credentials.",
+});
+
+export const notWaiterToken = (): IErrorMessage => ({
+  success: false,
+  status: 401,
+  message:
+    "The user's token is not waiter. Please Login with admin credentials.",
+});
+
+export const notReceptionistToken = (): IErrorMessage => ({
+  success: false,
+  status: 401,
+  message:
+    "The user's token is not receptionist. Please Login with admin credentials.",
+});
+
+export const notChefToken = (): IErrorMessage => ({
+  success: false,
+  status: 401,
+  message: "The user's token is not chef. Please Login with admin credentials.",
+});
+
 export const ErrorObjectPassedError = (err: any) => ({
   success: false,
   status: 500,

@@ -29,31 +29,35 @@ export const createToken = (user: ITokenSigner) => {
 export interface IValidatedToken {
   isValidated: boolean;
   timeRemainingInSeconds: number;
-  validatedWith: string;
+  validatedWith: "admin" | "receptionist" | "chef" | "waiter";
 }
 
 export const validateJSONWebToken = (
   token: string
 ): IValidatedToken | boolean => {
-  const validateToken: string | JwtPayload = jwt.verify(
-    token,
-    process.env.TOKENIZER || "RestaurantManager"
-  );
-  if (!validateToken || typeof validateToken === "string") {
-    console.log("Validation is a string", validateToken);
-    return false;
-  }
-  const timeRemainingInSeconds: number = validateToken.exp
-    ? getDifferenceInSeconds(validateToken.exp)
-    : 0;
-  const isValidated = Math.sign(timeRemainingInSeconds) === 1 ? true : false;
-  if (isValidated) {
-    return {
-      isValidated,
-      timeRemainingInSeconds,
-      validatedWith: validateToken.userType,
-    };
-  } else {
+  try {
+    const validateToken: string | JwtPayload = jwt.verify(
+      token,
+      process.env.TOKENIZER || "RestaurantManager"
+    );
+    if (!validateToken || typeof validateToken === "string") {
+      return false;
+    }
+    const timeRemainingInSeconds: number = validateToken.exp
+      ? getDifferenceInSeconds(validateToken.exp)
+      : 0;
+    const isValidated = Math.sign(timeRemainingInSeconds) === 1 ? true : false;
+    if (isValidated) {
+      return {
+        isValidated,
+        timeRemainingInSeconds,
+        validatedWith: validateToken.userType,
+      };
+    } else {
+      return false;
+    }
+  } catch (error) {
+    console.log(error);
     return false;
   }
 };

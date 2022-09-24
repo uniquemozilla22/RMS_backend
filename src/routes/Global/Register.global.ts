@@ -29,7 +29,7 @@ const AdminRegistration = async (req: Request, res: Response) => {
     password,
     username,
     phone,
-    userType: "admin",
+    userType: "waiter",
   });
 
   try {

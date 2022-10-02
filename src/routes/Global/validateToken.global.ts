@@ -13,7 +13,6 @@ const validateToken = (req: Request, res: Response) => {
     return;
   }
   const validated = validateJSONWebToken(token);
-
   if (!validated) {
     res.status(401).send(NotValidToken());
     return;

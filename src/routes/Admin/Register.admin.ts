@@ -7,10 +7,17 @@ import {
   UserAlreadyExists,
 } from "../../utils/HandleError/Error.utils";
 import { SuccesMessageWithData } from "../../utils/HandleResponse/HandleResponse.utils";
-import { encryptPassword } from "../../utils/middleware/bycrypt.middleware";
 
-const AdminRegistration = async (req: Request, res: Response) => {
-  const { name, email, address, password, username, phone } = req.body;
+const RegistrationUser = async (req: Request, res: Response) => {
+  const {
+    name,
+    email,
+    address,
+    password,
+    username,
+    phone,
+    type: userType,
+  } = req.body;
 
   const checkByEmail: IErrorMessage | undefined = await checkUserRegistration(
     email
@@ -29,7 +36,7 @@ const AdminRegistration = async (req: Request, res: Response) => {
     password,
     username,
     phone,
-    userType: "waiter",
+    userType,
   });
 
   try {
@@ -63,4 +70,4 @@ const checkUserRegistration = async (
   }
 };
 
-export default AdminRegistration;
+export default RegistrationUser;

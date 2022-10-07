@@ -67,3 +67,10 @@ export const ErrorObjectPassedError = (err: any) => ({
   message: err.message,
   data: err,
 });
+
+export const ErrorNotificationCreation = (err: any): IErrorMessageWithData => ({
+  success: false,
+  status: 500,
+  message: "Notification Creation Error !" + err.message,
+  data: err,
+});

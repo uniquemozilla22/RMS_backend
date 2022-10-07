@@ -1,16 +1,6 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, InferSchemaType, Types } from "mongoose";
 
-export interface IUser {
-  name: string;
-  email: string;
-  address: string;
-  password: string;
-  username: string;
-  phone?: string;
-  userType: "admin" | "receptionist" | "chef" | "waiter";
-}
-
-const User = new Schema<IUser>({
+const User = new Schema({
   name: {
     type: String,
     required: true,
@@ -37,9 +27,16 @@ const User = new Schema<IUser>({
   },
   userType: {
     type: String,
+    enum: ["admin", "receptionist", "chef", "waiter"],
     required: true,
   },
+  notification: {
+    type: Types.ObjectId,
+    ref: "notifications",
+  },
 });
+
+export type IUser = InferSchemaType<typeof User>;
 
 const UserSchema = model<IUser>("users", User);
 

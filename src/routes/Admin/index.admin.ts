@@ -5,6 +5,6 @@ import RegistrationUser from "./Register.admin";
 
 const AdminRouter = express.Router();
 
-AdminRouter.post("register", isAdmin, encryptPassword, RegistrationUser);
+AdminRouter.post("/register", isAdmin, encryptPassword, RegistrationUser);
 
 export default AdminRouter;

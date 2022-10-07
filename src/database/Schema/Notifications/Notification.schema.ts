@@ -13,6 +13,10 @@ const NotificationList = new Schema({
     type: "string",
     required: true,
   },
+  seenStatus: {
+    type: "boolean",
+    required: true,
+  },
 });
 
 export type INotificationList = InferSchemaType<typeof NotificationList>;
